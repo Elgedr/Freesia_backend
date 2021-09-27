@@ -23,7 +23,7 @@ services:
     container_name: db
     restart: always
     environment:
-      MYSQL_DATABASE: db
+      MYSQL_DATABASE: freesia
       MYSQL_USER: user
       MYSQL_PASSWORD: 123456
       MYSQL_ROOT_PASSWORD: root
