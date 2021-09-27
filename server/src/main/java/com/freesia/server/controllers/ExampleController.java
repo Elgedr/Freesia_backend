@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/freesia")
 @RestController
-public class ExapleController {
+public class ExampleController {
 
     @GetMapping
     public String hello(){
