@@ -1,27 +1,53 @@
 package com.freesia.server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "place")
 public class Place {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public long id;
-    public String type;
-    public int price;
-    public boolean is_booked;
+    private long id;
+    @ManyToOne
+    @JoinColumn(name = "ship_id", nullable = false)
+    private Ship ship;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "passenger_id", referencedColumnName = "id")
+    private Passenger passenger;
+    private String type;
+    private int price;
+    private int place_num;
 
-    protected Place() {
+
+    public Place() {
     }
 
-    public Place(long id, String type, int price, boolean is_booked) {
+    public Place(long id, Ship ship, Passenger passenger, String type, int price, int place_num) {
         this.id = id;
+        this.ship = ship;
+        this.passenger = passenger;
         this.type = type;
         this.price = price;
-        this.is_booked = is_booked;
+        this.place_num = place_num;
+    }
+
+    public Ship getShip() {
+        return ship;
+    }
+
+    public void setShip(Ship ship) {
+        this.ship = ship;
     }
 
     public long getId() {
@@ -48,11 +74,11 @@ public class Place {
         this.price = price;
     }
 
-    public boolean isIs_booked() {
-        return is_booked;
+    public int getPlace_num() {
+        return place_num;
     }
 
-    public void setIs_booked(boolean is_booked) {
-        this.is_booked = is_booked;
+    public void setPlace_num(int place_num) {
+        this.place_num = place_num;
     }
 }
