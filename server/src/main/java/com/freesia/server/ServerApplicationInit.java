@@ -6,6 +6,7 @@ import com.freesia.server.models.Ship;
 import com.freesia.server.repositories.FlightRepository;
 import com.freesia.server.repositories.PassengerRepository;
 import com.freesia.server.repositories.ShipRepository;
+import com.freesia.server.services.ShipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,9 @@ public class ServerApplicationInit implements CommandLineRunner {
     @Autowired
     protected PassengerRepository passengerRepository;
 
+    @Autowired
+    private ShipService shipService;
+
     @Override
     public void run(String... args) {
         long now = System.currentTimeMillis();
@@ -29,9 +33,9 @@ public class ServerApplicationInit implements CommandLineRunner {
         long then = System.currentTimeMillis();
         Timestamp arrival = new Timestamp(then);
 
-        Flight moon = new Flight(1L, "Earth", sqlTimestamp, "Moon", arrival);
-        Flight sun = new Flight(2L, "Earth", sqlTimestamp, "Sun", arrival);
-        Flight jupiter = new Flight(3L, "Earth", sqlTimestamp, "Jupiter", arrival);
+//        Flight moon = new Flight(1L, "Earth", sqlTimestamp, "Moon", arrival);
+//        Flight sun = new Flight(2L, "Earth", sqlTimestamp, "Sun", arrival);
+//        Flight jupiter = new Flight(3L, "Earth", sqlTimestamp, "Jupiter", arrival);
 
         Ship ship1 = new Ship(1, "RS-329", 10);
         Ship ship2 = new Ship(2,"M-238", 10);
@@ -43,16 +47,18 @@ public class ServerApplicationInit implements CommandLineRunner {
 //        Passenger passengerErika = new Passenger(3, "Erika", "Maksimova", "erika.maksimova@gmail.com", "52222222");
 //        List<Passenger> passengers = List.of(passengerJulia, passengerErika, passengerEllina);
 //
-        Place firstPlace = new Place(1, "Econom", 10, 1);
-        Place secondPlace = new Place(2,  "Econom", 10, 2);
-        Place thirdPlace = new Place(3, "Econom", 10, 3);
-        Place fourthPlace = new Place(3, "Econom", 10, 3);
+//        Place firstPlace = new Place(1, "Econom", 10, 1);
+//        Place secondPlace = new Place(2,  "Econom", 10, 2);
+//        Place thirdPlace = new Place(3, "Econom", 10, 3);
+//        Place fourthPlace = new Place(3, "Econom", 10, 3);
 
-        ship1.addPlace(firstPlace);
-        shipRepository.save(ship1);
+//        ship1.addPlace(firstPlace);
+//        shipRepository.save(ship1);
 //        List<Flight> flights = List.of(moon, sun, jupiter);
 //        flightRepository.saveAll(flights);
 //        passengerRepository.saveAll(passengers);
 //        shipRepository.saveAll(ships);
+        Ship shipFromDb = shipService.getTheShipById(1L);
+        System.out.println(shipFromDb.getName());
     }
 }

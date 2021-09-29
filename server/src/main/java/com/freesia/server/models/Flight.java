@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 
 
 @Entity
-@Table(name = "Flight")
+@Table(name = "flight")
 public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,7 +24,7 @@ public class Flight {
     private Timestamp departureTime;
     private String destinationPlace;
     private Timestamp arrivalTime;
-    @OneToOne()
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ship_id")
     private Ship ship;
 

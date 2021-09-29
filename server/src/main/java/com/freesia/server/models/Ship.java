@@ -1,34 +1,25 @@
 package com.freesia.server.models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Table(name = "Ship")
+@Table(name = "v_ship")
 public class Ship {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private long id;
+    @Column(name = "name")
     private String name;
     @Column(name = "num_of_places")
     private int numOfPlaces;
-//    @JoinColumn(table = "Ship_Places_Availability", referencedColumnName = "num_of_available_places")
+    @Column(name = "num_of_available_places")
     private int numOfAvailablePlaces;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "Ship_Place_Combination", joinColumns = { @JoinColumn(name = "ship_id") })
-    private List<Place> places;
 
     protected Ship() {
     }
@@ -62,12 +53,5 @@ public class Ship {
 
     public void setNumOfPlaces(int num_of_places) {
         this.numOfPlaces = num_of_places;
-    }
-
-    public void addPlace(Place place) {
-        if (this.places == null) {
-            this.places = new ArrayList<>();
-        }
-        this.places.add(place);
     }
 }
