@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,9 +22,9 @@ public class Passenger {
     public Passenger() {
     }
 
-    public Passenger(long id, String passenger_name, String passenger_surname, String email, String telephone) {
+    public Passenger(long id, String name, String passenger_surname, String email, String telephone) {
         this.id = id;
-        this.passenger_name = passenger_name;
+        this.passenger_name = name;
         this.passenger_surname = passenger_surname;
         this.email = email;
         this.telephone = telephone;

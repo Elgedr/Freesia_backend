@@ -54,7 +54,6 @@ public class Ship {
     }
 
 
-
     public String getName() {
         return name;
     }

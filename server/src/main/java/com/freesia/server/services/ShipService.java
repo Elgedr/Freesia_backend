@@ -16,22 +16,28 @@ public class ShipService {
     public ShipService(ShipRepository repository) {
         this.repository = repository;
     }
-    public Ship saveShip(Ship ship){
+
+    public Ship saveShip(Ship ship) {
         return repository.save(ship);
     }
 
-    public List<Ship> getAllShips()
-    {
+    public List<Ship> getAllShips() {
         List<Ship> ships = new ArrayList<Ship>();
-        repository.findAll().forEach(ship1 -> ships.add(ship1));
+        repository.findAll().forEach(ships::add);
         return ships;
     }
-    public Ship getShipById(Long id){
+
+    public Ship getTheShipById(Long id) {
         return repository.findById(id).orElse(null);
     }
 
-    public void delete(Long id)
-    {
+    public String deleteShip(Long id) {
         repository.deleteById(id);
+        return "Ship is not available!";
     }
+
+    public List<Ship> saveShips(List<Ship> ships) {
+        return (List<Ship>) repository.saveAll(ships);
+    }
+
 }
