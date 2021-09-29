@@ -1,6 +1,6 @@
 package com.freesia.server.services;
 
-import com.freesia.server.models.Passenger;
+import com.freesia.server.models.Reservation;
 import com.freesia.server.repositories.PassengerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +16,12 @@ public class PassengerService {
         this.repository = repository;
     }
 
-    public Passenger savePassenger(Passenger passenger) {
-        return repository.save(passenger);
+    public void savePassenger(Reservation reservation) {
+        repository.save(reservation);
     }
 
-    public List<Passenger> savePassengers(List<Passenger> passengers) {
-        return (List<Passenger>) repository.saveAll(passengers);
+    public void savePassengers(List<Reservation> reservations) {
+         repository.saveAll(reservations);
     }
 
 //

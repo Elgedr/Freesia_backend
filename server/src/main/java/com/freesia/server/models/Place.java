@@ -16,12 +16,6 @@ public class Place {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @ManyToOne
-    @JoinColumn(name = "ship_id", nullable = false)
-    private Ship ship;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "passenger_id", referencedColumnName = "id")
-    private Passenger passenger;
     private String type;
     private int price;
     private int place_num;
@@ -30,21 +24,11 @@ public class Place {
     public Place() {
     }
 
-    public Place(long id, Ship ship, Passenger passenger, String type, int price, int place_num) {
+    public Place(long id, String type, int price, int place_num) {
         this.id = id;
-        this.ship = ship;
-        this.passenger = passenger;
         this.type = type;
         this.price = price;
         this.place_num = place_num;
-    }
-
-    public Ship getShip() {
-        return ship;
-    }
-
-    public void setShip(Ship ship) {
-        this.ship = ship;
     }
 
     public long getId() {

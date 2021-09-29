@@ -7,42 +7,36 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "ship")
+@Table(name = "Ship")
 public class Ship {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private long id;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "flight_id", referencedColumnName = "id")
-    private Flight flight;
     private String name;
-    private int num_of_places;
-    @OneToMany(mappedBy = "ship")
+    @Column(name = "num_of_places")
+    private int numOfPlaces;
+//    @JoinColumn(table = "Ship_Places_Availability", referencedColumnName = "num_of_available_places")
+    private int numOfAvailablePlaces;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "Ship_Place_Combination", joinColumns = { @JoinColumn(name = "ship_id") })
     private List<Place> places;
 
     protected Ship() {
     }
 
-    public Ship(long id, Flight flight, String name, int num_of_places) {
+    public Ship(long id, String name, int numOfPlaces) {
         this.id = id;
-        this.flight = flight;
         this.name = name;
-        this.num_of_places = num_of_places;
-    }
-
-    public Flight getFlight() {
-        return flight;
-    }
-
-    public void setFlight(Flight flight) {
-        this.flight = flight;
+        this.numOfPlaces = numOfPlaces;
     }
 
     public long getId() {
@@ -62,11 +56,18 @@ public class Ship {
         this.name = name;
     }
 
-    public int getNum_of_places() {
-        return num_of_places;
+    public int getNumOfPlaces() {
+        return numOfPlaces;
     }
 
-    public void setNum_of_places(int num_of_places) {
-        this.num_of_places = num_of_places;
+    public void setNumOfPlaces(int num_of_places) {
+        this.numOfPlaces = num_of_places;
+    }
+
+    public void addPlace(Place place) {
+        if (this.places == null) {
+            this.places = new ArrayList<>();
+        }
+        this.places.add(place);
     }
 }

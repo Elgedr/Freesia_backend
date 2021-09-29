@@ -1,37 +1,42 @@
 package com.freesia.server.models;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.sql.Timestamp;
 
+
 @Entity
-@Table(name = "flight")
+@Table(name = "Flight")
 public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private long id;
-    private String departure_place;
-    private Timestamp departure_time;
-    private String destination_place;
-    private Timestamp arrival_time;
-    @OneToOne(mappedBy = "flight")
+    private String departurePlace;
+    private Timestamp departureTime;
+    private String destinationPlace;
+    private Timestamp arrivalTime;
+    @OneToOne()
+    @JoinColumn(name = "ship_id")
     private Ship ship;
 
     protected Flight() {
     }
 
-    public Flight(long id, String departure_place, Timestamp departure_time, String destination_place, Timestamp arrival_time) {
+    public Flight(long id, String departurePlace, Timestamp departureTime, String destinationPlace, Timestamp arrivalTime) {
         this.id = id;
-        this.departure_place = departure_place;
-        this.departure_time = departure_time;
-        this.destination_place = destination_place;
-        this.arrival_time = arrival_time;
+        this.departurePlace = departurePlace;
+        this.departureTime = departureTime;
+        this.destinationPlace = destinationPlace;
+        this.arrivalTime = arrivalTime;
     }
 
     public long getId() {
@@ -42,35 +47,43 @@ public class Flight {
         this.id = id;
     }
 
-    public String getDeparture_place() {
-        return departure_place;
+    public String getDeparturePlace() {
+        return departurePlace;
     }
 
-    public void setDeparture_place(String departure_place) {
-        this.departure_place = departure_place;
+    public void setDeparturePlace(String departurePlace) {
+        this.departurePlace = departurePlace;
     }
 
-    public Timestamp getDeparture_time() {
-        return departure_time;
+    public Timestamp getDepartureTime() {
+        return departureTime;
     }
 
-    public void setDeparture_time(Timestamp departure_time) {
-        this.departure_time = departure_time;
+    public void setDepartureTime(Timestamp departureTime) {
+        this.departureTime = departureTime;
     }
 
-    public String getDestination_place() {
-        return destination_place;
+    public String getDestinationPlace() {
+        return destinationPlace;
     }
 
-    public void setDestination_place(String destination_place) {
-        this.destination_place = destination_place;
+    public void setDestinationPlace(String destinationPlace) {
+        this.destinationPlace = destinationPlace;
     }
 
-    public Timestamp getArrival_time() {
-        return arrival_time;
+    public Timestamp getArrivalTime() {
+        return arrivalTime;
     }
 
-    public void setArrival_time(Timestamp arrival_time) {
-        this.arrival_time = arrival_time;
+    public void setArrivalTime(Timestamp arrivalTime) {
+        this.arrivalTime = arrivalTime;
+    }
+
+    public Ship getShip() {
+        return ship;
+    }
+
+    public void setShip(Ship ship) {
+        this.ship = ship;
     }
 }

@@ -1,6 +1,7 @@
 package com.freesia.server.services;
 
 import com.freesia.server.models.Flight;
+import com.freesia.server.models.Ship;
 import com.freesia.server.repositories.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,17 +15,10 @@ public class FlightService {
     private FlightRepository flightRepository;
 
     public List<Flight> findAll() {
-
-        var it = flightRepository.findAll();
-
-        var flights = new ArrayList<Flight>();
-        it.forEach(flights::add);
-
-        return flights;
+        return flightRepository.findAll();
     }
 
     public Long count() {
-
         return flightRepository.count();
     }
 
@@ -33,20 +27,16 @@ public class FlightService {
         flightRepository.deleteById(flightId);
     }
 
-    public List<Flight> saveAll(List<Flight> flights) {
-        return (List<Flight>) flightRepository.saveAll(flights);
+    public void saveAll(List<Flight> flights) {
+        flightRepository.saveAll(flights);
     }
 
     public Flight getFlightById(Long id) {
         return flightRepository.findById(id).orElse(null);
     }
 
-    public List<Flight> saveFlights(List<Flight> flights) {
-        return (List<Flight>) flightRepository.saveAll(flights);
-    }
-
-    public Flight saveFlight(Flight flight) {
-        return flightRepository.save(flight);
+    public void saveFlight(Flight flight) {
+        flightRepository.save(flight);
     }
 
 }
