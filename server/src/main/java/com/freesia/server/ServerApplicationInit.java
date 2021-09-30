@@ -1,10 +1,8 @@
 package com.freesia.server;
 
-import com.freesia.server.models.Flight;
-import com.freesia.server.models.Place;
 import com.freesia.server.models.Ship;
 import com.freesia.server.repositories.FlightRepository;
-import com.freesia.server.repositories.PassengerRepository;
+import com.freesia.server.repositories.ReservationRepository;
 import com.freesia.server.repositories.ShipRepository;
 import com.freesia.server.services.ShipService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +18,7 @@ public class ServerApplicationInit implements CommandLineRunner {
     @Autowired
     protected FlightRepository flightRepository;
     @Autowired
-    protected PassengerRepository passengerRepository;
+    protected ReservationRepository reservationRepository;
 
     @Autowired
     private ShipService shipService;

@@ -14,9 +14,13 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     public long id;
+
     public String passenger_name;
+
     public String passenger_surname;
+
     public String email;
+
     public String telephone;
 
     public Reservation() {

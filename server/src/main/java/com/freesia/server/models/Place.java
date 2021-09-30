@@ -12,8 +12,11 @@ public class Place {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     private String type;
+
     private int price;
+
     private int place_num;
 
 

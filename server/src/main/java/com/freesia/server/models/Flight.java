@@ -2,6 +2,7 @@ package com.freesia.server.models;
 
 import lombok.Data;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,11 +20,16 @@ public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private long id;
+    private Long id;
+
     private String departurePlace;
+
     private Timestamp departureTime;
+
     private String destinationPlace;
+
     private Timestamp arrivalTime;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ship_id")
     private Ship ship;

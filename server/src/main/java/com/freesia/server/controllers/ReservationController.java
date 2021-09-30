@@ -1,4 +1,4 @@
 package com.freesia.server.controllers;
 
-public class PassengerController {
+public class ReservationController {
 }
