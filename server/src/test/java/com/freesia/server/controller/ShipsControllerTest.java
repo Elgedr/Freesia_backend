@@ -28,7 +28,7 @@ public class ShipsControllerTest {
     @Test
     void getAllShips() throws Exception {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
-                        .get("/ship/all"))
+                        .get("/ships"))
                 .andExpect(status()
                         .isOk())
                 .andReturn();
