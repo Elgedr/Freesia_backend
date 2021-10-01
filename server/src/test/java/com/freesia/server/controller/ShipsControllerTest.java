@@ -26,7 +26,7 @@ public class ShipsControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    void getAllShips() throws Exception {
+    public void getAllShipsTest() throws Exception {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
                         .get("/ships"))
                 .andExpect(status()
@@ -39,16 +39,16 @@ public class ShipsControllerTest {
     }
 
     @Test
-    void shipById() throws Exception {
+    public void shipById() throws Exception {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
-                        .get("/ship/2"))
+                        .get("/ships/3"))
                 .andExpect(status()
                         .isOk())
                 .andReturn();
         String contentAsString = mvcResult.getResponse().getContentAsString();
         Ship ship = objectMapper.readValue(contentAsString, new TypeReference<>() {
         });
-        assertEquals("Ellina", ship.getName());
+        assertEquals("COV-2019", ship.getName());
 
     }
 
