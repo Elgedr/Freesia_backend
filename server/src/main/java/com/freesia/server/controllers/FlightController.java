@@ -1,6 +1,8 @@
 package com.freesia.server.controllers;
 
+import com.freesia.server.models.Flight;
 import com.freesia.server.models.Ship;
+import com.freesia.server.services.FlightService;
 import com.freesia.server.services.ShipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,27 +14,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping("/ships")
+@RequestMapping("flights")
 @RestController
-public class ShipController {
+public class FlightController {
 
     @Autowired
-    private ShipService shipService;
+    private FlightService flightService;
 
-    @GetMapping("")
-    public List<Ship> ships() {
-        return shipService.getAllShips();
+    @GetMapping
+    public List<Flight> flights() {
+        return flightService.findAll();
     }
 
-    @GetMapping("{id}")
-    public Ship ship(@PathVariable Long id) {
-        return shipService.getTheShipById(id);
+    @GetMapping("/{id}")
+    public Flight flightById(@PathVariable Long id) {
+        return flightService.getFlightById(id);
     }
 
     @PostMapping("/create")
-    public Ship saveShip(@RequestBody Ship ship) {
-        return shipService.saveShip(ship);
+    public void saveFlight(@RequestBody Flight flight) {
+         flightService.saveFlight(flight);
     }
 
 
 }
+

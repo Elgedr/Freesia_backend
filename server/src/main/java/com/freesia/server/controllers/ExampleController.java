@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ExampleController {
 
     @GetMapping
-    public String hello(){
+    public String hello() {
         return "Hello! We are FREESIA team";
     }
 }

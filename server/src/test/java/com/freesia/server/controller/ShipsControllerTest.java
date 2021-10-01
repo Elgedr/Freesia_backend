@@ -2,9 +2,8 @@ package com.freesia.server.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.freesia.server.controllers.ShipController;
 import com.freesia.server.models.Ship;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,8 +13,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -28,7 +26,7 @@ public class ShipsControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    void allShips() throws Exception {
+    void getAllShips() throws Exception {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
                         .get("/ship/all"))
                 .andExpect(status()
@@ -51,6 +49,7 @@ public class ShipsControllerTest {
         Ship ship = objectMapper.readValue(contentAsString, new TypeReference<>() {
         });
         assertEquals("Ellina", ship.getName());
+
     }
 
 }

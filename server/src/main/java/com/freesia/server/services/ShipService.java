@@ -5,7 +5,6 @@ import com.freesia.server.repositories.ShipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,22 +15,25 @@ public class ShipService {
     public ShipService(ShipRepository repository) {
         this.repository = repository;
     }
-    public Ship saveShip(Ship ship){
+
+    public Ship saveShip(Ship ship) {
         return repository.save(ship);
     }
 
-    public List<Ship> getAllShips()
-    {
-        List<Ship> ships = new ArrayList<Ship>();
-        repository.findAll().forEach(ship1 -> ships.add(ship1));
-        return ships;
+    public List<Ship> getAllShips() {
+        return repository.findAll();
     }
-    public Ship getShipById(Long id){
+
+    public Ship getTheShipById(Long id) {
         return repository.findById(id).orElse(null);
     }
 
-    public void delete(Long id)
-    {
+    public void deleteShip(Long id) {
         repository.deleteById(id);
     }
+
+    public List<Ship> saveShips(List<Ship> ships) {
+        return (List<Ship>) repository.saveAll(ships);
+    }
+
 }

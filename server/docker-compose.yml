@@ -1,24 +1,18 @@
 version: "3.9"
 
 services:
-
-  liquibase:
-    image: liquibase/liquibase
-    container_name: liquibase
-    depends_on:
-      - db
-    hostname: liquibase
+  flyway_mysql:
+    image: boxfuse/flyway:latest
+    command: "migrate"
     environment:
-      MYSQL_DB: db
+      FLYWAY_USER: root
+      FLYWAY_PASSWORD: root
+      FLYWAY_URL: jdbc:mysql://db:3306/freesia
     volumes:
-      - ./config/db:/liquibase/changelog
-#    command: [
-#        '-c',
-#        './liquibase_policy_init.sh',
-#        'db', '3306'
-#    ]
-
-  db:
+      - ./docker/migrations/sql:/flyway/sql
+    depends_on:
+      - mysql
+  mysql:
     image: mysql:5.7
     container_name: db
     restart: always
@@ -29,12 +23,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
     ports:
       # <Port exposed> : < MySQL Port running inside container>
-      - '3306:3306'
+      - 3306:3306
     expose:
       # Opens port 3306 on the container
-      - '3306'
-    volumes:
-      - db_data:/var/lib/mysql
-
-volumes:
-  db_data: {}
+      - 3306
