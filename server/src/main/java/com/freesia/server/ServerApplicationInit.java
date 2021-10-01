@@ -56,7 +56,7 @@ public class ServerApplicationInit implements CommandLineRunner {
 //        flightRepository.saveAll(flights);
 //        passengerRepository.saveAll(passengers);
 //        shipRepository.saveAll(ships);
-        Ship shipFromDb = shipService.getTheShipById(1L);
-        System.out.println(shipFromDb.getName());
+//        Ship shipFromDb = shipService.getTheShipById(1L);
+//        System.out.println(shipFromDb.getName());
     }
 }
