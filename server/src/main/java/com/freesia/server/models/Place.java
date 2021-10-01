@@ -17,17 +17,17 @@ public class Place {
 
     private int price;
 
-    private int place_num;
+    private int isBooked;
 
 
     public Place() {
     }
 
-    public Place(long id, String type, int price, int place_num) {
+    public Place(long id, String type, int price, int isBooked) {
         this.id = id;
         this.type = type;
         this.price = price;
-        this.place_num = place_num;
+        this.isBooked = isBooked;
     }
 
     public long getId() {
@@ -54,11 +54,11 @@ public class Place {
         this.price = price;
     }
 
-    public int getPlace_num() {
-        return place_num;
+    public int getIsBooked() {
+        return isBooked;
     }
 
-    public void setPlace_num(int place_num) {
-        this.place_num = place_num;
+    public void setIsBooked(int isBooked) {
+        this.isBooked = isBooked;
     }
 }

@@ -27,10 +27,11 @@ public class Ship {
     protected Ship() {
     }
 
-    public Ship(long id, String name, int numOfPlaces) {
+    public Ship(long id, String name, int numOfPlaces, int numOfAvailablePlaces) {
         this.id = id;
         this.name = name;
         this.numOfPlaces = numOfPlaces;
+        this.numOfAvailablePlaces = numOfAvailablePlaces;
     }
 
     public long getId() {
@@ -40,7 +41,6 @@ public class Ship {
     public void setId(long id) {
         this.id = id;
     }
-
 
     public String getName() {
         return name;
@@ -54,7 +54,15 @@ public class Ship {
         return numOfPlaces;
     }
 
-    public void setNumOfPlaces(int num_of_places) {
-        this.numOfPlaces = num_of_places;
+    public void setNumOfPlaces(int numOfPlaces) {
+        this.numOfPlaces = numOfPlaces;
+    }
+
+    public int getNumOfAvailablePlaces() {
+        return numOfAvailablePlaces;
+    }
+
+    public void setNumOfAvailablePlaces(int numOfAvailablePlaces) {
+        this.numOfAvailablePlaces = numOfAvailablePlaces;
     }
 }

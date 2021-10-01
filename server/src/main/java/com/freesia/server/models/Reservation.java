@@ -1,10 +1,13 @@
 package com.freesia.server.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,9 +18,17 @@ public class Reservation {
     @Column(name = "id")
     public long id;
 
-    public String passenger_name;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ship_id", referencedColumnName = "id")
+    private Ship ship;
 
-    public String passenger_surname;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "place_id", referencedColumnName = "id")
+    private Place place;
+
+    public String passengerName;
+
+    public String passengerSurname;
 
     public String email;
 
@@ -26,13 +37,12 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(long id, String name, String passenger_surname, String email, String telephone) {
+    public Reservation(long id, String passengerName, String passengerSurname, String email, String telephone) {
         this.id = id;
-        this.passenger_name = name;
-        this.passenger_surname = passenger_surname;
+        this.passengerName = passengerName;
+        this.passengerSurname = passengerSurname;
         this.email = email;
         this.telephone = telephone;
-
     }
 
     public long getId() {
@@ -43,20 +53,36 @@ public class Reservation {
         this.id = id;
     }
 
-    public String getPassenger_name() {
-        return passenger_name;
+    public Ship getShip() {
+        return ship;
     }
 
-    public void setPassenger_name(String passenger_name) {
-        this.passenger_name = passenger_name;
+    public void setShip(Ship ship) {
+        this.ship = ship;
     }
 
-    public String getPassenger_surname() {
-        return passenger_surname;
+    public Place getPlace() {
+        return place;
     }
 
-    public void setPassenger_surname(String passenger_surname) {
-        this.passenger_surname = passenger_surname;
+    public void setPlace(Place place) {
+        this.place = place;
+    }
+
+    public String getPassengerName() {
+        return passengerName;
+    }
+
+    public void setPassengerName(String passengerName) {
+        this.passengerName = passengerName;
+    }
+
+    public String getPassengerSurname() {
+        return passengerSurname;
+    }
+
+    public void setPassengerSurname(String passengerSurname) {
+        this.passengerSurname = passengerSurname;
     }
 
     public String getEmail() {
@@ -74,6 +100,4 @@ public class Reservation {
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
-
-
 }

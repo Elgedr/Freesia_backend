@@ -1,7 +1,5 @@
 package com.freesia.server.models;
 
-import lombok.Data;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
