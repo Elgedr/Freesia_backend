@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -22,11 +23,11 @@ public class Flight {
 
     private String departurePlace;
 
-    private Timestamp departureTime;
+    private LocalDateTime departureTime;
 
     private String destinationPlace;
 
-    private Timestamp arrivalTime;
+    private LocalDateTime arrivalTime;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ship_id")
@@ -35,7 +36,7 @@ public class Flight {
     protected Flight() {
     }
 
-    public Flight(long id, String departurePlace, Timestamp departureTime, String destinationPlace, Timestamp arrivalTime) {
+    public Flight(long id, String departurePlace, LocalDateTime departureTime, String destinationPlace, LocalDateTime arrivalTime) {
         this.id = id;
         this.departurePlace = departurePlace;
         this.departureTime = departureTime;
@@ -59,11 +60,11 @@ public class Flight {
         this.departurePlace = departurePlace;
     }
 
-    public Timestamp getDepartureTime() {
+    public LocalDateTime getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(Timestamp departureTime) {
+    public void setDepartureTime(LocalDateTime departureTime) {
         this.departureTime = departureTime;
     }
 
@@ -75,11 +76,11 @@ public class Flight {
         this.destinationPlace = destinationPlace;
     }
 
-    public Timestamp getArrivalTime() {
+    public LocalDateTime getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(Timestamp arrivalTime) {
+    public void setArrivalTime(LocalDateTime arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 

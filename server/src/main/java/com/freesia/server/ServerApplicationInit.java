@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
@@ -29,18 +29,16 @@ public class ServerApplicationInit implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        long now = System.currentTimeMillis();
-        Timestamp sqlTimestamp = new Timestamp(now);
+        LocalDateTime departure = LocalDateTime.now();
 
-        long then = System.currentTimeMillis();
-        Timestamp arrival = new Timestamp(then);
+        LocalDateTime arrival = LocalDateTime.now();
 
-        Flight moon = new Flight(1L, "Earth", sqlTimestamp, "Moon", arrival);
-        Flight sun = new Flight(2L, "Earth", sqlTimestamp, "Sun", arrival);
-        Flight jupiter = new Flight(3L, "Earth", sqlTimestamp, "Jupiter", arrival);
+        Flight moon = new Flight(1L, "Earth", departure, "Moon", arrival);
+        Flight sun = new Flight(2L, "Earth", departure, "Sun", arrival);
+        Flight jupiter = new Flight(3L, "Earth", departure, "Jupiter", arrival);
 
         Ship ship1 = new Ship(1, "RS-329", 10, 10);
-        Ship ship2 = new Ship(2,"M-238", 10, 10);
+        Ship ship2 = new Ship(2, "M-238", 10, 10);
         Ship ship3 = new Ship(3, "COV-2019", 15, 15);
 
 //
@@ -50,7 +48,7 @@ public class ServerApplicationInit implements CommandLineRunner {
         List<Reservation> reservations = List.of(passengerJulia, passengerErika, passengerEllina);
 
         Place firstPlace = new Place(1, "Econom", 10, 1);
-        Place secondPlace = new Place(2,  "Econom", 10, 2);
+        Place secondPlace = new Place(2, "Econom", 10, 2);
         Place thirdPlace = new Place(3, "Econom", 10, 3);
         Place fourthPlace = new Place(3, "Econom", 10, 3);
 

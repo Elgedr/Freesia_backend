@@ -13,16 +13,16 @@ public class Ship {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private long id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
 
     @Column(name = "num_of_places")
-    private int numOfPlaces;
+    private Integer numOfPlaces;
 
     @Column(name = "num_of_available_places")
-    private int numOfAvailablePlaces;
+    private Integer numOfAvailablePlaces;
 
     protected Ship() {
     }

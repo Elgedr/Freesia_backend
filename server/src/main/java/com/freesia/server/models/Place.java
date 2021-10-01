@@ -15,9 +15,9 @@ public class Place {
 
     private String type;
 
-    private int price;
+    private Integer price;
 
-    private int isBooked;
+    private Integer isBooked;
 
 
     public Place() {

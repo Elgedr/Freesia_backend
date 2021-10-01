@@ -16,7 +16,7 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    public long id;
+    public Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ship_id", referencedColumnName = "id")
