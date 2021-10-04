@@ -55,9 +55,9 @@ public class ServerApplicationInit implements CommandLineRunner {
         moon.setShip(ship1);
         sun.setShip(ship2);
         jupiter.setShip(ship3);
-//        shipRepository.save(ship1);
-        List<Flight> flights = List.of(moon, sun, jupiter);
-//        flightRepository.saveAll(flights);
+        shipRepository.save(ship1);
+     //   List<Flight> flights = List.of(moon, sun, jupiter);
+      //  flightRepository.saveAll(flights);
 //        passengerRepository.saveAll(passengers);
 //        shipRepository.saveAll(ships);
 //        Ship shipFromDb = shipService.getTheShipById(1L);

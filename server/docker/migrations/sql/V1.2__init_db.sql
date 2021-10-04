@@ -3,6 +3,7 @@ CREATE TABLE ship
     id            INT AUTO_INCREMENT NOT NULL,
     name          VARCHAR(50)        NOT NULL,
     num_of_places INT                NOT NULL,
+    num_of_available_places INT                NOT NULL,
     CONSTRAINT pk_ship PRIMARY KEY (id)
 );
 
