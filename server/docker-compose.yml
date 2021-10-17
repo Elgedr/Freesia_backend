@@ -19,5 +19,14 @@ services:
       - 5432
     networks:
       - freesia-net
+  freesia-liquibase:
+    container_name: freesia-liquibase
+    image: liquibase/liquibase
+    command: --url=jdbc:postgresql://freesia-db:5432/freesia_db?user=freesia_user&password=123456 --changeLogFile=changelog.xml update
+    volumes:
+      - ./config/changelog.xml:/liquibase/changelog.xml
+      - ./scripts:/liquibase/scripts
+    networks:
+      - freesia-net
 networks:
   freesia-net:
