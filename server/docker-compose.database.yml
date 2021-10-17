@@ -1,0 +1,23 @@
+version: "3.9"
+
+volumes:
+  postgres-freesia-data:
+
+services:
+  freesia-db:
+    image: postgres:11-alpine
+    container_name: freesia_db
+    environment:
+      - POSTGRES_DB=freesia_db
+      - POSTGRES_USER=freesia_user
+      - POSTGRES_PASSWORD=123456
+    volumes:
+      - postgres-freesia-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+    networks:
+      - freesia-net
+networks:
+  freesia-net:
