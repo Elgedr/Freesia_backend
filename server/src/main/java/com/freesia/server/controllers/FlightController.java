@@ -5,6 +5,8 @@ import com.freesia.server.models.Ship;
 import com.freesia.server.services.FlightService;
 import com.freesia.server.services.ShipService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,14 +18,15 @@ import java.util.List;
 
 @RequestMapping("flights")
 @RestController
+@CrossOrigin
 public class FlightController {
 
     @Autowired
     private FlightService flightService;
 
-    @GetMapping
-    public List<Flight> flights() {
-        return flightService.findAll();
+    @GetMapping(produces = "application/json")
+    public ResponseEntity<List<Flight>> flights() {
+        return ResponseEntity.ok(flightService.findAll());
     }
 
     @GetMapping("/{id}")

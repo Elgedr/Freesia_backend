@@ -14,5 +14,6 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
 
     @Query("SELECT f FROM Flight f WHERE f.ship.id = :shipId")
     List<Flight> findFlightsByShipId(@Param("shipId") Long shipId);
+
 }
 
