@@ -1,9 +1,7 @@
 package com.freesia.server.controllers;
 
 import com.freesia.server.models.Flight;
-import com.freesia.server.models.Ship;
 import com.freesia.server.services.FlightService;
-import com.freesia.server.services.ShipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -36,7 +34,7 @@ public class FlightController {
 
     @PostMapping("/create")
     public void saveFlight(@RequestBody Flight flight) {
-         flightService.saveFlight(flight);
+        flightService.saveFlight(flight);
     }
 
 

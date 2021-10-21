@@ -35,5 +35,4 @@ public class ShipService {
     public List<Ship> saveShips(List<Ship> ships) {
         return (List<Ship>) repository.saveAll(ships);
     }
-    // a
 }
