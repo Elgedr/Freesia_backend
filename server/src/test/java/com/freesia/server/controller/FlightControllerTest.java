@@ -1,7 +1,11 @@
 package com.freesia.server.controller;
 
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.freesia.server.models.Flight;
 import com.freesia.server.models.Ship;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,37 +26,25 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 
-public class ShipsControllerTest {
+public class FlightControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-    ObjectMapper objectMapper = new ObjectMapper();
+    ObjectMapper mapper = JsonMapper.builder()
+            .addModule(new JavaTimeModule())
+            .build();
 
     @Test
-    public void getAllShipsTest() throws Exception {
+    public void getAllFlightsTest() throws Exception {
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
-                        .get("/ships"))
+                        .get("/flights"))
                 .andExpect(status()
                         .isOk())
                 .andReturn();
         String contentAsString = mvcResult.getResponse().getContentAsString();
-        List<Ship> ship = objectMapper.readValue(contentAsString, new TypeReference<>() {
+        List<Flight> flight = mapper.readValue(contentAsString, new TypeReference<>() {
         });
-        assertEquals(8, ship.size());
+        assertEquals(12, flight.size());
     }
-
-    @Test
-    public void shipById() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
-                        .get("/ships/3"))
-                .andExpect(status()
-                        .isOk())
-                .andReturn();
-        String contentAsString = mvcResult.getResponse().getContentAsString();
-        Ship ship = objectMapper.readValue(contentAsString, new TypeReference<>() {
-        });
-        assertEquals("COV-2019", ship.getName());
-
-    }
-
 }
+
