@@ -45,14 +45,12 @@ public class ServerApplicationInit implements CommandLineRunner {
         Ship ship6 = new Ship(6L, "OLYMPIA-1", 3, 3);
         Ship ship7 = new Ship(7L, "TALTECH", 2, 2);
         Ship ship8 = new Ship(8L, "DESTINY", 2, 2);
-        Ship ship9 = new Ship(9L, "TITAN-00", 2, 2);
-
-        shipRepository.saveAll(List.of(ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9));
+        shipRepository.saveAll(List.of(ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8));
 
 
 
-        LocalDateTime date1 = LocalDateTime.of(2021, Month.FEBRUARY, 12, 16, 30);
-        LocalDateTime date11 = LocalDateTime.of(2021, Month.FEBRUARY, 12, 22, 28);
+        LocalDateTime date1 = LocalDateTime.of(2022, Month.FEBRUARY, 12, 16, 30);
+        LocalDateTime date11 = LocalDateTime.of(2022, Month.FEBRUARY, 12, 22, 28);
 
         LocalDateTime date2 = LocalDateTime.of(2022, Month.MARCH, 9, 19, 0);
         LocalDateTime date22 = LocalDateTime.of(2022, Month.MARCH, 9, 23, 30);
@@ -69,23 +67,23 @@ public class ServerApplicationInit implements CommandLineRunner {
         LocalDateTime date6 = LocalDateTime.of(2030, Month.SEPTEMBER, 10, 4, 20);
         LocalDateTime date66 = LocalDateTime.of(2030, Month.SEPTEMBER, 10, 6, 20);
 
-        LocalDateTime date7 = LocalDateTime.of(2021, Month.FEBRUARY, 19, 16, 30);
-        LocalDateTime date77 = LocalDateTime.of(2021, Month.FEBRUARY, 19, 22, 28);
+        LocalDateTime date7 = LocalDateTime.of(2022, Month.FEBRUARY, 19, 16, 30);
+        LocalDateTime date77 = LocalDateTime.of(2022, Month.FEBRUARY, 19, 22, 28);
 
-        LocalDateTime date8 = LocalDateTime.of(2021, Month.MAY, 20, 11, 30);
-        LocalDateTime date88 = LocalDateTime.of(2021, Month.MAY, 20, 15, 28);
+        LocalDateTime date8 = LocalDateTime.of(2022, Month.MAY, 20, 11, 30);
+        LocalDateTime date88 = LocalDateTime.of(2022, Month.MAY, 20, 15, 28);
 
-        LocalDateTime date9 = LocalDateTime.of(2021, Month.SEPTEMBER, 1, 16, 30);
-        LocalDateTime date99 = LocalDateTime.of(2021, Month.SEPTEMBER, 1, 20, 28);
+        LocalDateTime date9 = LocalDateTime.of(2022, Month.SEPTEMBER, 1, 16, 30);
+        LocalDateTime date99 = LocalDateTime.of(2022, Month.SEPTEMBER, 1, 20, 28);
 
-        LocalDateTime date10= LocalDateTime.of(2021, Month.OCTOBER, 15, 16, 30);
-        LocalDateTime date101 = LocalDateTime.of(2021, Month.OCTOBER, 14, 22, 28);
+        LocalDateTime date10= LocalDateTime.of(2022, Month.OCTOBER, 15, 16, 30);
+        LocalDateTime date101 = LocalDateTime.of(2022, Month.OCTOBER, 14, 22, 28);
 
-        LocalDateTime date111 = LocalDateTime.of(2021, Month.NOVEMBER, 4, 10, 20);
-        LocalDateTime date1111 = LocalDateTime.of(2021, Month.NOVEMBER, 4, 15, 28);
+        LocalDateTime date111 = LocalDateTime.of(2022, Month.NOVEMBER, 4, 10, 20);
+        LocalDateTime date1111 = LocalDateTime.of(2022, Month.NOVEMBER, 4, 15, 28);
 
-        LocalDateTime date12 = LocalDateTime.of(2021, Month.AUGUST, 3, 18, 30);
-        LocalDateTime date121 = LocalDateTime.of(2021, Month.AUGUST, 3, 20, 45);
+        LocalDateTime date12 = LocalDateTime.of(2022, Month.AUGUST, 3, 18, 30);
+        LocalDateTime date121 = LocalDateTime.of(2022, Month.AUGUST, 3, 20, 45);
 
         Flight moon = new Flight(1L, "Tallinn", date1, "Moon", date11);
 
@@ -126,7 +124,7 @@ public class ServerApplicationInit implements CommandLineRunner {
         neptune.setShip(ship6);
         moon1.setShip(ship7);
         mercury1.setShip(ship8);
-        jupiter1.setShip(ship9);
+        jupiter1.setShip(ship2);
         mars1.setShip(ship2);
         saturn1.setShip(ship1);
 
