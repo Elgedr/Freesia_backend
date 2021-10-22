@@ -33,7 +33,7 @@ public class Flight {
     @JoinColumn(name = "ship_id")
     private Ship ship;
 
-    protected Flight() {
+    public Flight() {
     }
 
     public Flight(long id, String departurePlace, LocalDateTime departureTime, String destinationPlace, LocalDateTime arrivalTime) {

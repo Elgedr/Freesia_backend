@@ -32,11 +32,6 @@ public class FlightController {
         return flightService.getFlightById(id);
     }
 
-    @PostMapping("/create")
-    public void saveFlight(@RequestBody Flight flight) {
-        flightService.saveFlight(flight);
-    }
-
 
 }
 
