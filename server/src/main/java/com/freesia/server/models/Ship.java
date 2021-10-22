@@ -24,7 +24,7 @@ public class Ship {
     @Column(name = "num_of_available_places")
     private Integer numOfAvailablePlaces;
 
-    protected Ship() {
+    public Ship() {
     }
 
     public Ship(long id, String name, int numOfPlaces, int numOfAvailablePlaces) {

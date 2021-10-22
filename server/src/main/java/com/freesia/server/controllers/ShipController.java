@@ -32,10 +32,5 @@ public class ShipController {
         return shipService.getTheShipById(id);
     }
 
-    @PostMapping("/create")
-    public Ship saveShip(@RequestBody Ship ship) {
-        return shipService.saveShip(ship);
-    }
-
 
 }
