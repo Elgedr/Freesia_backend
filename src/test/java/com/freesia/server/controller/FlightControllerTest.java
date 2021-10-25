@@ -19,14 +19,15 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-//@RunWith(SpringRunner.class)
+
 @SpringBootTest
 @AutoConfigureMockMvc
 public class FlightControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-    ObjectMapper mapper = JsonMapper.builder()
+    @Autowired
+    private ObjectMapper objectMapper = JsonMapper.builder()
             .addModule(new JavaTimeModule())
             .build();
 
@@ -38,7 +39,7 @@ public class FlightControllerTest {
                         .isOk())
                 .andReturn();
         String contentAsString = mvcResult.getResponse().getContentAsString();
-        List<Flight> flight = mapper.readValue(contentAsString, new TypeReference<>() {
+        List<Flight> flight = objectMapper.readValue(contentAsString, new TypeReference<>() {
         });
         assertEquals(12, flight.size());
     }
