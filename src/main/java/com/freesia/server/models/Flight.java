@@ -1,5 +1,8 @@
 package com.freesia.server.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +18,8 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "flight")
+@Getter
+@Setter
 public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,51 +49,4 @@ public class Flight {
         this.arrivalTime = arrivalTime;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getDeparturePlace() {
-        return departurePlace;
-    }
-
-    public void setDeparturePlace(String departurePlace) {
-        this.departurePlace = departurePlace;
-    }
-
-    public LocalDateTime getDepartureTime() {
-        return departureTime;
-    }
-
-    public void setDepartureTime(LocalDateTime departureTime) {
-        this.departureTime = departureTime;
-    }
-
-    public String getDestinationPlace() {
-        return destinationPlace;
-    }
-
-    public void setDestinationPlace(String destinationPlace) {
-        this.destinationPlace = destinationPlace;
-    }
-
-    public LocalDateTime getArrivalTime() {
-        return arrivalTime;
-    }
-
-    public void setArrivalTime(LocalDateTime arrivalTime) {
-        this.arrivalTime = arrivalTime;
-    }
-
-    public Ship getShip() {
-        return ship;
-    }
-
-    public void setShip(Ship ship) {
-        this.ship = ship;
-    }
 }

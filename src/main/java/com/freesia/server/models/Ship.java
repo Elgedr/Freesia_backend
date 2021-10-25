@@ -1,5 +1,8 @@
 package com.freesia.server.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +12,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ship")
+@Getter
+@Setter
 public class Ship {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,35 +39,4 @@ public class Ship {
         this.numOfAvailablePlaces = numOfAvailablePlaces;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getNumOfPlaces() {
-        return numOfPlaces;
-    }
-
-    public void setNumOfPlaces(int numOfPlaces) {
-        this.numOfPlaces = numOfPlaces;
-    }
-
-    public int getNumOfAvailablePlaces() {
-        return numOfAvailablePlaces;
-    }
-
-    public void setNumOfAvailablePlaces(int numOfAvailablePlaces) {
-        this.numOfAvailablePlaces = numOfAvailablePlaces;
-    }
 }
