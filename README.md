@@ -12,7 +12,10 @@ The project is still in development, but don't worry! it's only going to take...
 1. First, please clone our [frontend repository](https://gitlab.cs.ttu.ee/elgedr/iti0302-2021-front) as well as this backend repository.
 2. Our SQL database is resided in the Docker image included with the backend repository. Please build the Docker image as following:
     - `docker build`
-    - `docker-compose up -d` (twice)
+    -  `docker-compose -f docker-compose.yml up -d`
+    - `docker-compose -f docker-compose.liquibase.yml up -d`
+
+
 3. When the database is up and running, go to `server/src/main/java/com/freesia/server/ServerApplication.java` and run the `ServerApplication.java` file. Congrats! Backend is now running on `localhost:8081`.
 4. Only when the backend is all set up and running, you can run frontend. Please open the frontend repository in your terminal and run `ng serve --open`. Our website will open on `localhost:4200`.
 5. You did it! If you can see a list of flights in the Flights tab on our site under the weather component, everything is working.
