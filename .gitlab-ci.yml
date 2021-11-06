@@ -16,8 +16,8 @@ build freesia:
   artifacts:
     paths:
       - build/libs
-#  tags:
- #   - freesia
+  tags:
+    - freesia
   script:
     - ./gradlew assemble
 
