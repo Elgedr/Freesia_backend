@@ -83,7 +83,7 @@ public class ServerApplicationInit implements CommandLineRunner {
         LocalDateTime date1111 = LocalDateTime.of(2022, Month.NOVEMBER, 4, 15, 28);
 
         LocalDateTime date12 = LocalDateTime.of(2022, Month.AUGUST, 3, 18, 30);
-        LocalDateTime date121 = LocalDateTime.of(2022, Month.AUGUST, 3, 20, 45);
+        LocalDateTime date121 = LocalDateTime.of(2022, Month.SEPTEMBER, 12, 20, 45);
 
         Flight moon = new Flight(1L, "Tallinn", date1, "Moon", date11);
 
