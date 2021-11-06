@@ -21,12 +21,12 @@ build freesia:
   script:
     - ./gradlew assemble
 
-test freesia:
-  stage: test
-  tags:
-    - freesia
-  script:
-    - ./gradlew check
+#test freesia:
+ # stage: test
+  #tags:
+   # - freesia
+#  script:
+ #   - ./gradlew check
 
 deploy freesia:
   stage: deploy
