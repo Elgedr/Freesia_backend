@@ -32,7 +32,8 @@ deploy freesia:
   stage: deploy
   only:
     refs:
-      - master
+      - issue39
+      - main
   tags:
     - freesia
   script:
