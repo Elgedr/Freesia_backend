@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping("flights")
+@RequestMapping("/api/flights")
 @RestController
 @CrossOrigin
 public class FlightController {
