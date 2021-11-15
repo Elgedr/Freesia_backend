@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @CrossOrigin
-@RequestMapping("/freesia")
+@RequestMapping("/api/freesia")
 @RestController
 public class ExampleController {
 

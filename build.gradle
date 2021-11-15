@@ -50,4 +50,6 @@ test {
     useJUnitPlatform()
 }
 
-
+bootJar {
+    archiveFileName = 'freesia-backend.jar'
+}
