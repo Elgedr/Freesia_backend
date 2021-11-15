@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping("/ships")
+@RequestMapping({"/ships", "/ships/v12"})
 @RestController
 @CrossOrigin
 public class ShipController {
