@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping({"/api/ships"})
+@RequestMapping({"/ships"})
 @RestController
-@CrossOrigin
+//@CrossOrigin
 public class ShipController {
 
     @Autowired
