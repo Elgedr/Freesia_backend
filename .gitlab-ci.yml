@@ -32,7 +32,6 @@ deploy freesia:
   stage: deploy
   only:
     refs:
-      - issue39
       - main
   tags:
     - freesia
