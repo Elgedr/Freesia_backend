@@ -17,7 +17,7 @@ import java.util.List;
 
 @CrossOrigin
 @RequestMapping("/freesia")
-@RestController
+//@RestController
 public class ExampleController {
 
     @Autowired

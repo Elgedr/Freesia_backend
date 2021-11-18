@@ -53,3 +53,5 @@ test {
 bootJar {
     archiveFileName = 'freesia-backend.jar'
 }
+
+
