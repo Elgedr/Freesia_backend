@@ -1,11 +1,16 @@
 package com.freesia.server;
 
+import com.freesia.server.models.ERole;
 import com.freesia.server.models.Flight;
 import com.freesia.server.models.Place;
+import com.freesia.server.models.Role;
 import com.freesia.server.models.Ship;
+import com.freesia.server.models.User;
 import com.freesia.server.repositories.FlightRepository;
 import com.freesia.server.repositories.ReservationRepository;
+import com.freesia.server.repositories.RoleRepository;
 import com.freesia.server.repositories.ShipRepository;
+import com.freesia.server.repositories.UserRepository;
 import com.freesia.server.services.ShipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,7 +18,9 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class ServerApplicationInit implements CommandLineRunner {
@@ -23,21 +30,27 @@ public class ServerApplicationInit implements CommandLineRunner {
     protected FlightRepository flightRepository;
     @Autowired
     protected ReservationRepository reservationRepository;
-
+    @Autowired
+    protected RoleRepository roleRepository;
+    @Autowired
+    protected UserRepository userRepository;
     @Autowired
     private ShipService shipService;
 
     @Override
     public void run(String... args) {
+        Role admin = new Role(1, ERole.ROLE_ADMIN);
+        Role user = new Role(2, ERole.ROLE_USER);
+        Role guest = new Role(3, ERole.ROLE_GUEST);
+        roleRepository.saveAll(List.of(admin, user, guest));
+
+//        User admin1 = new User("erika", "erika.maksimova@gmail.com", "123456");
+//        Set<Role> roles = new HashSet<>();
+//        roles.add(admin);
+//        admin1.setRoles(roles);
+//        userRepository.save(admin1);
 
         Ship ship1 = new Ship(1L, "RS-329", 3, 3);
-
-        Place firstPlace = new Place(1, "Econom", 10, 1);
-        Place secondPlace = new Place(2, "Econom", 10, 1);
-        Place thirdPlace = new Place(3, "Econom", 10, 1);
-
-
-
         Ship ship2 = new Ship(2L, "M-238", 3, 3);
         Ship ship3 = new Ship(3L, "COV-2019", 3, 3);
         Ship ship4 = new Ship(4L, "GO", 3, 3);
@@ -130,19 +143,5 @@ public class ServerApplicationInit implements CommandLineRunner {
 
         List<Flight> flights = List.of(moon, mercury, jupiter, saturn, uranus, neptune, moon1, mercury1, jupiter1, mars1, saturn1);
         flightRepository.saveAll(flights);
-
-
-
-//
-//        moon.setShip(ship1);
-//        sun.setShip(ship2);
-//        jupiter.setShip(ship3);
-//        shipRepository.save(ship1);
-//        List<Flight> flights = List.of(moon, sun, jupiter);
-//        flightRepository.saveAll(flights);
-////        passengerRepository.saveAll(passengers);
-////        shipRepository.saveAll(ships);
-//        Ship shipFromDb = shipService.getTheShipById(1L);
-//        System.out.println(shipFromDb.getName());
     }
 }
