@@ -14,6 +14,7 @@ import com.freesia.server.repositories.UserRepository;
 import com.freesia.server.services.ShipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -36,6 +37,8 @@ public class ServerApplicationInit implements CommandLineRunner {
     protected UserRepository userRepository;
     @Autowired
     private ShipService shipService;
+    @Autowired
+    PasswordEncoder encoder;
 
     @Override
     public void run(String... args) {
@@ -44,11 +47,13 @@ public class ServerApplicationInit implements CommandLineRunner {
         Role guest = new Role(3, ERole.ROLE_GUEST);
         roleRepository.saveAll(List.of(admin, user, guest));
 
-//        User admin1 = new User("erika", "erika.maksimova@gmail.com", "123456");
-//        Set<Role> roles = new HashSet<>();
-//        roles.add(admin);
-//        admin1.setRoles(roles);
-//        userRepository.save(admin1);
+        if (!userRepository.existsByUsername("erika")) {
+            User admin1 = new User("erika", "erika.maksimova@gmail.com", encoder.encode("123456"));
+            Set<Role> roles = new HashSet<>();
+            roles.add(admin);
+            admin1.setRoles(roles);
+            userRepository.save(admin1);
+        }
 
         Ship ship1 = new Ship(1L, "RS-329", 3, 3);
         Ship ship2 = new Ship(2L, "M-238", 3, 3);
