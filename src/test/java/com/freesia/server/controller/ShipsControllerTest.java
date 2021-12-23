@@ -3,6 +3,7 @@ package com.freesia.server.controller;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.freesia.server.models.Ship;
+import com.freesia.server.models.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -56,4 +57,31 @@ public class ShipsControllerTest {
 
     }
 
+    @Test
+    @WithMockUser(username = "erika", password = "123456", roles = {"ADMIN"})
+    public void getShipByNumberOfPlaces() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
+                        .get("/ships/1"))
+                .andExpect(status()
+                        .isOk())
+                .andReturn();
+        String contentAsString = mvcResult.getResponse().getContentAsString();
+        Ship ship = objectMapper.readValue(contentAsString, new TypeReference<>() {
+        });
+        assertEquals(3, ship.getNumOfPlaces());
+    }
+
+    @Test
+    @WithMockUser(username = "erika", password = "123456", roles = {"ADMIN"})
+    public void getShipByNumberOfAvailablePlaces() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
+                        .get("/ships/2"))
+                .andExpect(status()
+                        .isOk())
+                .andReturn();
+        String contentAsString = mvcResult.getResponse().getContentAsString();
+        Ship ship = objectMapper.readValue(contentAsString, new TypeReference<>() {
+        });
+        assertEquals(3, ship.getNumOfAvailablePlaces());
+    }
 }
