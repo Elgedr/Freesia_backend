@@ -16,6 +16,8 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -43,9 +45,69 @@ public class FlightControllerTest {
                         .isOk())
                 .andReturn();
         String contentAsString = mvcResult.getResponse().getContentAsString();
-        List<Flight> flight = objectMapper.readValue(contentAsString, new TypeReference<>() {
+        List<Flight> flightsList = objectMapper.readValue(contentAsString, new TypeReference<>() {
         });
-        assertEquals(12, flight.size());
+        assertEquals(12, flightsList.size());
     }
+
+    @Test
+    @WithMockUser(username = "erika", password = "123456", roles = {"ADMIN"})
+    public void getFlight1DeparturePlace() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
+                        .get("/flights/1"))
+                .andExpect(status()
+                        .isOk())
+                .andReturn();
+        String contentAsString = mvcResult.getResponse().getContentAsString();
+        Flight flight = objectMapper.readValue(contentAsString, new TypeReference<>() {
+        });
+        assertEquals( "Tallinn", flight.getDeparturePlace());
+    }
+
+    @Test
+    @WithMockUser(username = "erika", password = "123456", roles = {"ADMIN"})
+    public void getFlight1DestinationPlace() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
+                        .get("/flights/1"))
+                .andExpect(status()
+                        .isOk())
+                .andReturn();
+        String contentAsString = mvcResult.getResponse().getContentAsString();
+        Flight flight = objectMapper.readValue(contentAsString, new TypeReference<>() {
+        });
+        assertEquals("Moon", flight.getDestinationPlace());
+    }
+
+    @Test
+    @WithMockUser(username = "erika", password = "123456", roles = {"ADMIN"})
+    public void getFlight4DepartureTime() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
+                        .get("/flights/4"))
+                .andExpect(status()
+                        .isOk())
+                .andReturn();
+        String contentAsString = mvcResult.getResponse().getContentAsString();
+        Flight flight = objectMapper.readValue(contentAsString, new TypeReference<>() {
+        });
+        LocalDateTime date5 = LocalDateTime.of(2025, Month.DECEMBER, 19, 0, 0);
+        assertEquals(date5, flight.getDepartureTime());
+    }
+
+    @Test
+    @WithMockUser(username = "erika", password = "123456", roles = {"ADMIN"})
+    public void getFlight4ArrivalTime() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
+                        .get("/flights/4"))
+                .andExpect(status()
+                        .isOk())
+                .andReturn();
+        String contentAsString = mvcResult.getResponse().getContentAsString();
+        Flight flight = objectMapper.readValue(contentAsString, new TypeReference<>() {
+        });
+        LocalDateTime date55 = LocalDateTime.of(2025, Month.DECEMBER, 19, 5, 40);
+        assertEquals(date55, flight.getArrivalTime());
+    }
+
+
 }
 
