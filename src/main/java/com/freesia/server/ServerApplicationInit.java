@@ -35,8 +35,7 @@ public class ServerApplicationInit implements CommandLineRunner {
     protected RoleRepository roleRepository;
     @Autowired
     protected UserRepository userRepository;
-    @Autowired
-    private ShipService shipService;
+
     @Autowired
     PasswordEncoder encoder;
 
