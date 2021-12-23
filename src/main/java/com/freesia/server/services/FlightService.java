@@ -1,12 +1,10 @@
 package com.freesia.server.services;
 
 import com.freesia.server.models.Flight;
-import com.freesia.server.models.Ship;
 import com.freesia.server.repositories.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
