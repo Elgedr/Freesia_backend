@@ -135,7 +135,7 @@ public class SkateboardsApi {
     // create a method to query a single skateboard
     @GetMapping("/{id}")
     public Skateboard oneSkateboard(@PathVariable Long id) {
-        return skateboards.stream().filter(x -> x.getId().equals(id)).findFirst().get();
+        return skateboards.stream().filter(x -> x.getId().equals(id)).findFirst().orElse(null);
     }
 
     // D
@@ -151,7 +151,7 @@ public class SkateboardsApi {
     // create a method to update a skateboard
     @PutMapping("/{id}")
     public Skateboard updateSkateboard(@RequestBody Skateboard newSkateboard, @PathVariable Long id) {
-        Skateboard toUpdate = skateboards.stream().filter(x -> x.getId().equals(id)).findFirst().get();
+        Skateboard toUpdate = skateboards.stream().filter(x -> x.getId().equals(id)).findFirst().orElse(null);
         int index = skateboards.indexOf(toUpdate);
         return skateboards.set(index, newSkateboard);
     }
@@ -161,7 +161,7 @@ public class SkateboardsApi {
     // create a method to delete a skateboard
     @DeleteMapping("/{id}")
     public void deleteSkateboard(@PathVariable Long id) {
-        Skateboard toDelete = skateboards.stream().filter(x -> x.getId().equals(id)).findFirst().get();
+        Skateboard toDelete = skateboards.stream().filter(x -> x.getId().equals(id)).findFirst().orElse(null);
         skateboards.remove(toDelete);
     }
 }
