@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -16,11 +17,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@RestController
 @RequestMapping({"/hats"})
-@Controller
 public class HatsApi {
 
-    ArrayList<Hat> hatsDB = new ArrayList<>();
+    private ArrayList<Hat> hatsDB = new ArrayList<>();
 
     //todo Welcome to the theory!
     // To start put these classes into my.project.controller.theory so you can check these using swagger or browser
@@ -53,52 +54,54 @@ public class HatsApi {
     // create a method to query hats (plural)
 
     // EXPLANATION
-    // http://localhost:XXXX/hats/filter/null  - when we need to get all hats (no filter/sorting)
-    // http://localhost:XXXX/hats/filter/style - when we need to get all hats by asked style
-    // http://localhost:XXXX/hats/filter/color - when we need to get all hats by asked color
-    // http://localhost:XXXX/hats/filter/sizeI - when we need to get all hats in ascending order
-    // http://localhost:XXXX/hats/filter/sizeD - when we need to get all hats in descending order
-    // http://localhost:XXXX/hats/filter/priceI - when we need to get all hats in ascending price
-    // http://localhost:XXXX/hats/filter/priceD - when we need to get all hats in descending price
+    // http://localhost:8081/api/hats/null/null  - when we need to get all hats (no filter/sorting)
+    // http://localhost:8081/api/hats/colour/black - when we need to get all hats by asked colour
+    // http://localhost:8081/api/hats/style/lala - when we need to get all hats by asked style
 
-    @GetMapping("/filter/{property}")
-    public List<Hat> getAllHats(@PathVariable() String property){
-        switch (property) {
-            case "style":
-                ArrayList<Hat> hatsByStyle = new ArrayList<>();
-                for (Hat hat : hatsDB) {
-                    if (hat.getStyle().equals(property)) {
-                        hatsByStyle.add(hat);
-                    }
+    // http://localhost:8081/api/hats/size/increase - when we need to get all hats in ascending order by size
+    // http://localhost:8081/api/hats/size/decrease - when we need to get all hats in descending order by size
+
+    // http://localhost:8081/api/hats/price/increase - when we need to get all hats in ascending price by size
+    // http://localhost:8081/api/hats/price/decrease - when we need to get all hats in descending price by size
+
+    @GetMapping("/{filter}/{property}")
+    public List<Hat> getAllHats(@PathVariable(required = false) String filter,@PathVariable(required = false) String property){
+        if (filter.equals("colour")){
+            ArrayList<Hat> neededHats = new ArrayList<>();
+            for (Hat hat : hatsDB) {
+                if (hat.getColour().equals(property)) {
+                    neededHats.add(hat);
                 }
-                return hatsByStyle;
-            case "color":
-                ArrayList<Hat> hatsByColor = new ArrayList<>();
-                for (Hat hat : hatsDB) {
-                    if (hat.getColour().equals(property)) {
-                        hatsByColor.add(hat);
-                    }
+            }
+            return neededHats;
+        } else if (filter.equals("style")){
+            ArrayList<Hat> neededHats = new ArrayList<>();
+            for (Hat hat : hatsDB) {
+                if (hat.getStyle().equals(property)) {
+                    neededHats.add(hat);
                 }
-                return hatsByColor;
-            case "sizeI":
-                return hatsDB.stream().sorted(Comparator.comparing(Hat::getSize)).collect(Collectors.toList());
-            case "sizeD":
-                return hatsDB.stream().sorted(Comparator.comparing(Hat::getSize).reversed()).collect(Collectors.toList());
-            case "priceI":
-                return hatsDB.stream().sorted(Comparator.comparing(Hat::getPrice)).collect(Collectors.toList());
-            case "priceD":
-                return hatsDB.stream().sorted(Comparator.comparing(Hat::getPrice).reversed()).collect(Collectors.toList());
-            case "null":
-                return hatsDB;
+            }
+            return neededHats;
+        } else if (filter.equals("size") && property.equals("increase")){
+            return hatsDB.stream().sorted(Comparator.comparing(Hat::getSize)).collect(Collectors.toList());
+        } else if (filter.equals("size") && property.equals("decrease")){
+            return hatsDB.stream().sorted(Comparator.comparing(Hat::getSize).reversed()).collect(Collectors.toList());
+        } else if (filter.equals("price") && property.equals("increase")){
+            return hatsDB.stream().sorted(Comparator.comparing(Hat::getPrice)).collect(Collectors.toList());
+        } else if (filter.equals("price") && property.equals("decrease")){
+            return hatsDB.stream().sorted(Comparator.comparing(Hat::getPrice).reversed()).collect(Collectors.toList());
         }
+
         return hatsDB;
+
+
     }
 
     //todo C "And each hat has some info, so once you click on it, it displays it"
     // create a method to query a single hat
 
     // EXPLANATION
-    // http://localhost:XXXX/hats/1 - when we need only the one hat by id
+    // http://localhost:8081/api/hats/1 - when we need only the one hat by id
 
     @GetMapping("/{id}")
     public  Hat getById(@PathVariable Long id){
@@ -113,18 +116,19 @@ public class HatsApi {
     //todo D "And then there are buttons for saving [..] when I have new hats [..]"
     // create a method to save a new hat
 
+
     @PostMapping
-    private void createAndSaveHat(@RequestBody Hat hat)
+    public boolean createAndSaveHat(@RequestBody Hat hat)
     {
-        hatsDB.add(hat);
+        return hatsDB.add(hat);
     }
 
     //todo E "And then there are buttons for [..] updating when [..] some info was wrong"
     // create a method to update a hat
 
     // EXPLANATION
-    // http://localhost:XXXX/hats/update/1?color=green&brand=CK - when we need to update particular info of the
-    // particular hat (in this case I want to change color and brand for the hat with 1 ID)
+    // http://localhost:8081/api/hats/update/1?size=3 - when we need to update particular info of the
+    // particular hat (in this case I want to change the size for the hat with 1 ID)
 
     @PutMapping("/update/{id}")
     private Hat update(@PathVariable("id") Long id, @RequestParam(required = false) String color,@RequestParam(required = false) String brand,@RequestParam(required = false) String price,@RequestParam(required = false) String style,@RequestParam(required = false) String size){
@@ -159,6 +163,9 @@ public class HatsApi {
 
     //todo F "Oh, and some way to remove hats."
     // create a method to delete a hat
+
+    // EXPLANATION
+    // http://localhost:8081/api/hats/1 - when we need to delete the hat with id 1.
 
     @DeleteMapping("/{id}")
     public void deleteHat(@PathVariable Long id){
